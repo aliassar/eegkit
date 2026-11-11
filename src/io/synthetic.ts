@@ -169,7 +169,11 @@ export function createSyntheticEEG(options: SyntheticEEGOptions): SyntheticEEG {
       `lineNoise frequency ${line.frequency} Hz is at or above Nyquist (${sampleRate / 2} Hz)`,
     );
   }
-  const amplitudes = { ...DEFAULT_BANDS, ...options.bands };
+  // Bands given as `undefined` keep their default instead of overriding it.
+  const amplitudes: Record<StandardBandName, number> = { ...DEFAULT_BANDS };
+  for (const [name, value] of Object.entries(options.bands ?? {})) {
+    if (value !== undefined) amplitudes[name as StandardBandName] = value;
+  }
   const bands = STANDARD_BANDS.filter((b) => b.name in amplitudes);
   for (const b of bands) {
     const a = amplitudes[b.name as StandardBandName];

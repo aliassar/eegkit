@@ -245,3 +245,16 @@ describe("startSyntheticStream", () => {
     ).toThrow(RangeError);
   });
 });
+
+describe("createSyntheticEEG band overrides", () => {
+  it("treats an undefined band amplitude as the default", () => {
+    const a = createSyntheticEEG({ sampleRate: FS, channels: 1, seed: 3 }).next(FS);
+    const b = createSyntheticEEG({
+      sampleRate: FS,
+      channels: 1,
+      seed: 3,
+      bands: { alpha: undefined as unknown as number },
+    }).next(FS);
+    expect(b).toEqual(a);
+  });
+});
