@@ -47,15 +47,15 @@ realistic EEG with tunable bands, mains hum, blinks and drift.
 
 ## What's inside
 
-| Area | Exports |
-| --- | --- |
-| **Filters** | `butterworthLowpass` / `Highpass` / `Bandpass` / `Bandstop`, `notch`, `cascade`, `IIRFilter`, `FilterBank` (multi-channel, streaming), `sosfilt`, `filtfilt` (zero-phase), `frequencyResponse` |
-| **Spectral** | `fft`, `rfft` (any length), `welch`, `periodogram`, `hann` / `hamming` / `blackman`, `bandPower`, `bandPowers`, `relativeBandPowers`, `peakFrequency` |
-| **Streaming** | `RingBuffer`, `SlidingWindow` (frame or chunk input, window callbacks) |
-| **Metrics** | `thetaBetaRatio`, `alphaThetaRatio`, `engagementIndex`, `bandRatio`, `frontalAlphaAsymmetry`, `ExponentialSmoother`, `Baseline` (running z-scores) |
-| **Quality** | `assessQuality` (flatline, clipping, amplitude, mains noise → good / fair / poor), `detectBlinks`, `goertzel` |
-| **I/O** | `parseEDF` (EDF and EDF+ with annotations), `connectWebSocket` (JSON/CSV/text samples, reconnects), `createSyntheticEEG`, `startSyntheticStream` |
-| **Pipeline** | `createPipeline` |
+| Area          | Exports                                                                                                                                                                                        |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Filters**   | `butterworthLowpass` / `Highpass` / `Bandpass` / `Bandstop`, `notch`, `cascade`, `IIRFilter`, `FilterBank` (multi-channel, streaming), `sosfilt`, `filtfilt` (zero-phase), `frequencyResponse` |
+| **Spectral**  | `fft`, `rfft` (any length), `welch`, `periodogram`, `hann` / `hamming` / `blackman`, `bandPower`, `bandPowers`, `relativeBandPowers`, `peakFrequency`                                          |
+| **Streaming** | `RingBuffer`, `SlidingWindow` (frame or chunk input, window callbacks)                                                                                                                         |
+| **Metrics**   | `thetaBetaRatio`, `alphaThetaRatio`, `engagementIndex`, `bandRatio`, `frontalAlphaAsymmetry`, `ExponentialSmoother`, `Baseline` (running z-scores)                                             |
+| **Quality**   | `assessQuality` (flatline, clipping, amplitude, mains noise → good / fair / poor), `detectBlinks`, `goertzel`                                                                                  |
+| **I/O**       | `parseEDF` (EDF and EDF+ with annotations), `connectWebSocket` (JSON/CSV/text samples, reconnects), `createSyntheticEEG`, `startSyntheticStream`                                               |
+| **Pipeline**  | `createPipeline`                                                                                                                                                                               |
 
 The conventions are the same everywhere:
 
@@ -152,12 +152,12 @@ known density of white noise, and round trips through EDF files the tests write.
 
 On an Apple M5 with Node 22:
 
-| Workload | Time | Real-time factor |
-| --- | --- | --- |
-| `createPipeline`, 8 channels at 256 Hz, 10 s of data (40 windows) | 16 ms | ~600× |
-| `createPipeline`, 32 channels at 256 Hz, 10 s of data | 70 ms | ~140× |
-| `welch` on a 2 s window, 1 channel | 29 µs | |
-| `assessQuality` on a 2 s window, 1 channel | 15 µs | |
+| Workload                                                          | Time  | Real-time factor |
+| ----------------------------------------------------------------- | ----- | ---------------- |
+| `createPipeline`, 8 channels at 256 Hz, 10 s of data (40 windows) | 16 ms | ~600×            |
+| `createPipeline`, 32 channels at 256 Hz, 10 s of data             | 70 ms | ~140×            |
+| `welch` on a 2 s window, 1 channel                                | 29 µs |                  |
+| `assessQuality` on a 2 s window, 1 channel                        | 15 µs |                  |
 
 Run `npm run bench` to reproduce these. The streaming filters and windows don't allocate per sample,
 and FFT plans are cached.
