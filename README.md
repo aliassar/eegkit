@@ -1,8 +1,6 @@
 # eegkit
 
 [![ci](https://github.com/aliassar/eegkit/actions/workflows/ci.yml/badge.svg)](https://github.com/aliassar/eegkit/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/eegkit)](https://www.npmjs.com/package/eegkit)
-[![types](https://img.shields.io/npm/types/eegkit)](https://www.npmjs.com/package/eegkit)
 [![license](https://img.shields.io/github/license/aliassar/eegkit)](LICENSE)
 
 Real-time EEG signal processing for JavaScript and TypeScript. Filters, spectra, band power,
@@ -12,9 +10,13 @@ It runs anywhere JavaScript does: browsers, Node, React Native (Hermes) and Web 
 to build neurofeedback apps, BCI prototypes, research dashboards, or to analyse EDF recordings
 without leaving JS.
 
+Install it straight from GitHub, pinned to a release tag:
+
 ```sh
-npm install eegkit
+npm install github:aliassar/eegkit#v0.1.0
 ```
+
+npm builds the package on install. It isn't published to the npm registry.
 
 ## Quick start
 
@@ -178,11 +180,10 @@ npm run bench
 npm run fixtures    # regenerate SciPy fixtures (needs uv)
 ```
 
-## Releases
+## Versions
 
-To release, bump `version` in `package.json` and push a tag `vX.Y.Z`. The
-[release workflow](.github/workflows/release.yml) checks the tag against the version, then
-publishes to npm with provenance and creates a GitHub release.
+Releases are git tags (`v0.1.0`, …) with notes in [CHANGELOG.md](CHANGELOG.md). Pin a tag in your
+`package.json` so `main` can move on without changing what you install.
 
 ## License
 

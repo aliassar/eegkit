@@ -1,6 +1,7 @@
 {
   "name": "eegkit",
   "version": "0.1.0",
+  "private": true,
   "description": "Real-time EEG signal processing for JavaScript: filters, band power, neurofeedback metrics and signal quality. Zero dependencies, runs in browsers, Node, React Native and Web Workers.",
   "keywords": [
     "eeg",
@@ -59,8 +60,7 @@
     "lint": "biome check .",
     "format": "biome check --write .",
     "fixtures": "uv run --with numpy --with scipy python scripts/make_fixtures.py",
-    "prepare": "tsup",
-    "prepublishOnly": "npm run typecheck && npm test"
+    "prepare": "tsup"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.6",
